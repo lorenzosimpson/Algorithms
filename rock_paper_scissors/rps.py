@@ -17,7 +17,6 @@ def rock_paper_scissors(n):
   rps_helper([], n)
   return all_possibilities
 
-
 print(rock_paper_scissors(2))
 
 
