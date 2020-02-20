@@ -7,35 +7,43 @@ def recipe_batches(recipe, ingredients):
   ## ingredients = what you have
   recipe_length = len(recipe)
   ingredients_length = len(ingredients)
-  minimums = []
-
+  # initialize an array that will contain (inventory/required) for each item
+  minimums = [0] * recipe_length
+  # append each item at index x to the array of minimums
+  x = 0
   # if there are more required ingredients than inventory, automatic fail
   if recipe_length is not ingredients_length:
     return 0
   else:
     for i in ingredients:
         # recipe[r] is value, ingredients[r] is value
-        if ingredients[i] // recipe[i] < 1:
+        if ingredients[i] == 0 or recipe[i] == 0:
+          return 0
+        elif ingredients[i] // recipe[i] < 1:
           # not enough of an ingredient
-          print('not enough')
+          return 0
         else:
-          minimums.append(ingredients[i] // recipe[i])
-
+          # minimums.append(ingredients[i] // recipe[i]) <-- easy way
+          minimums[x] = ingredients[i] // recipe[i]
+          x += 1
+  
+  # manually find the lowest value of minimums
+  result = minimums[0]
+  for m in range(1, len(minimums)):
+    if minimums[m] < minimums[m - 1]:
+      result = minimums[m]
+  
+  return result
         
-  
-  
-  
-  return min(minimums)
-        
 
 
-print(recipe_batches({'milk': 1, 'flour': 2}, {'milk': 15, 'flour': 4} ))
+print(recipe_batches({'milk': 1, 'flour': 2}, {'milk': 3, 'flour': 7} ))
   # return max number of whole batches we can make
 
 
-# if __name__ == '__main__':
-#   # Change the entries of these dictionaries to test 
-#   # your implementation with different inputs
-#   recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
-#   ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
-#   print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
+if __name__ == '__main__':
+  # Change the entries of these dictionaries to test 
+  # your implementation with different inputs
+  recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
+  ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
+  print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
