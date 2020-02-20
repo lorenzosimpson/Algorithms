@@ -12,7 +12,7 @@ def recipe_batches(recipe, ingredients):
   # append each item at index x to the array of minimums
   x = 0
   # if there are more required ingredients than inventory, automatic fail
-  if recipe_length > ingredients_length:
+  if recipe_length is not ingredients_length:
     return 0
   else:
     for i in ingredients:
@@ -34,7 +34,7 @@ def recipe_batches(recipe, ingredients):
       result = minimums[m]
   
   return result
-        
+
 
 
 
