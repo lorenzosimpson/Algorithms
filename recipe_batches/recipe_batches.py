@@ -12,7 +12,7 @@ def recipe_batches(recipe, ingredients):
   # append each item at index x to the array of minimums
   x = 0
   # if there are more required ingredients than inventory, automatic fail
-  if recipe_length is not ingredients_length:
+  if recipe_length > ingredients_length:
     return 0
   else:
     for i in ingredients:
@@ -37,7 +37,7 @@ def recipe_batches(recipe, ingredients):
         
 
 
-print(recipe_batches({'milk': 1, 'flour': 2}, {'milk': 3, 'flour': 7} ))
+
   # return max number of whole batches we can make
 
 
@@ -45,5 +45,5 @@ if __name__ == '__main__':
   # Change the entries of these dictionaries to test 
   # your implementation with different inputs
   recipe = { 'milk': 100, 'butter': 50, 'flour': 5 }
-  ingredients = { 'milk': 132, 'butter': 48, 'flour': 51 }
+  ingredients = { 'milk': 132, 'butter': 58, 'flour': 51 }
   print("{batches} batches can be made from the available ingredients: {ingredients}.".format(batches=recipe_batches(recipe, ingredients), ingredients=ingredients))
